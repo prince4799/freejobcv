@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreejobCV Resume Builder | Design Your Future</title>
+    <meta name="description" content="Build premium, professional resumes in minutes with our interactive builder. Upload PDF or enter details manually.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- PDF.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Sidebar: Controls & Inputs -->
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <div class="logo">
+                    <!-- <i data-lucide="sparkles"></i> -->
+                    <h1>FreejobCV</h1>
+                </div>
+                <p>Resume Builder Pro</p>
+            </header>
+
+            <nav class="tabs">
+                <button class="tab-btn active" data-tab="edit"><i data-lucide="edit-3"></i> Content</button>
+                <button class="tab-btn" data-tab="templates"><i data-lucide="layout"></i> Templates</button>
+            </nav>
+
+            <div class="tab-content" id="edit-tab">
+                <div class="upload-section">
+                    <div class="drop-zone" id="drop-zone">
+                        <i data-lucide="file-up"></i>
+                        <span>Drop PDF to Auto-fill</span>
+                        <input type="file" id="pdf-upload" accept=".pdf" hidden>
+                    </div>
+                </div>
+
+                <div class="form-sections">
+                    <!-- Personal Info -->
+                    <section class="form-group" data-section="personal">
+                        <h3><i data-lucide="user"></i> Personal Details</h3>
+                        <div class="input-grid">
+                            <input type="text" id="full-name" placeholder="Full Name">
+                            <input type="text" id="job-title" placeholder="Professional Title">
+                            <input type="email" id="email" placeholder="Email Address">
+                            <input type="tel" id="phone" placeholder="Phone Number">
+                            <input type="text" id="location" placeholder="City, Country">
+                            <input type="text" id="website" placeholder="Portfolio/LinkedIn">
+                        </div>
+                    </section>
+
+                    <!-- Summary -->
+                    <section class="form-group" data-section="summary">
+                        <h3><i data-lucide="align-left"></i> Summary</h3>
+                        <textarea id="summary-text" placeholder="Briefly describe your professional background and goals..."></textarea>
+                    </section>
+
+                    <!-- Experience -->
+                    <section class="form-group" id="experience-section">
+                        <div class="section-header">
+                            <h3><i data-lucide="briefcase"></i> Experience</h3>
+                            <button class="add-btn" onclick="addExperience()"><i data-lucide="plus"></i></button>
+                        </div>
+                        <div class="items-container" id="experience-list"></div>
+                    </section>
+
+                    <!-- Education -->
+                    <section class="form-group" id="education-section">
+                        <div class="section-header">
+                            <h3><i data-lucide="graduation-cap"></i> Education</h3>
+                            <button class="add-btn" onclick="addEducation()"><i data-lucide="plus"></i></button>
+                        </div>
+                        <div class="items-container" id="education-list"></div>
+                    </section>
+
+                    <!-- Projects -->
+                    <section class="form-group" id="projects-section">
+                        <div class="section-header">
+                            <h3><i data-lucide="folder-git-2"></i> Projects</h3>
+                            <button class="add-btn" onclick="addProject()"><i data-lucide="plus"></i></button>
+                        </div>
+                        <div class="items-container" id="projects-list"></div>
+                    </section>
+
+                    <!-- Skills -->
+                    <section class="form-group" data-section="skills">
+                        <h3><i data-lucide="award"></i> Skills</h3>
+                        <input type="text" id="skills-input" placeholder="Type skills separated by commas (e.g. React, Node.js, UI Design)">
+                    </section>
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="templates-tab">
+                <div class="template-selector">
+                    <div class="template-card active" data-template="executive">
+                        <div class="preview-mini executive"></div>
+                        <span>The Executive</span>
+                    </div>
+                    <div class="template-card" data-template="modernist">
+                        <div class="preview-mini modernist"></div>
+                        <span>The Modernist</span>
+                    </div>
+                    <div class="template-card" data-template="creative">
+                        <div class="preview-mini creative"></div>
+                        <span>The Creative</span>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="sidebar-footer">
+                <div class="zoom-controls">
+                    <i data-lucide="zoom-out"></i>
+                    <input type="range" id="zoom-slider" min="0.4" max="1.2" step="0.1" value="0.8">
+                    <i data-lucide="zoom-in"></i>
+                </div>
+                <div class="action-buttons">
+                    <button id="reset-btn" class="secondary-btn"><i data-lucide="rotate-ccw"></i> Reset</button>
+                    <button id="download-pdf" class="primary-btn">
+                        <i data-lucide="download"></i> Download PDF
+                    </button>
+                </div>
+            </footer>
+        </aside>
+
+        <!-- Main: Live Preview -->
+        <main class="preview-area">
+            <!-- Dynamic pages will be injected here -->
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="parser.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
